@@ -1,0 +1,253 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+
+}
+
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+
+.row{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 20px;
+    background-color: white;
+    border-bottom: 1px solid #ddd ;
+
+} 
+.header-top-left ul, .header-top-right ul{
+    display: flex;
+    align-items: center;
+    list-style-type: none;
+    margin: 10;
+    padding: 0px;
+}
+
+.header-top-left ul li , .header-top-right ul li{
+    margin-right:20px ;
+}
+
+.header-top-left ul li a, .header-top-right ul li a{
+    text-decoration: none;
+    color: black;
+    font-size: 14px;
+    font-weight: normal;
+    transition:color 0.3s;
+}
+.header-top-left ul li a:hover, .header-top-right ul li a:hover{
+   color: red;
+}
+.header-top-right ul li a{
+    font-size: 18px;
+    font-weight: bolder;
+}
+.header-top-right li a:before {
+    content: "☐";
+    margin-right: 5px;
+}
+.navbar-nav a{
+    position: relative;
+    display: inline-block;
+    padding: 10px;
+}
+.cart-count {
+    background-color: red;
+    color: white;
+    padding: 6px 10px;
+    border-radius: 40%;
+    font-size: 14px;
+    font-weight:bolders;
+    position: absolute;
+    top: -5px;
+    right: -10px;
+}
+
+.container{
+    padding: 30px;
+    margin: 15px;
+    height:auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+                                /* Main Area */
+
+.main-area{
+    background-color:  #002569;
+    padding: 20px;
+    margin: 15px auto;
+    width: 95%;
+    font-size:15px ;
+    font-family:Lato, sans-serif;
+    display: flex;
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top:0;
+}
+.main-menu{
+    flex: 1;
+    
+}
+.menu{
+    display: flex;
+    justify-content: space-around;
+    list-style-type:none ;
+    padding: 0;
+    margin: 0;
+    float:1;
+
+}
+.menu li{
+   
+   margin: 0,10px;
+
+
+}
+.menu li a{
+    text-decoration: none;
+    color:#ffffff;
+    font: 13px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    padding: 22px 18px;
+}
+.menu li a:hover{
+    color:rgba(255, 255, 0, 0.592);
+}
+.main-menu-searchbox{
+    display: flex;
+    align-items: center;
+    position: relative;
+    
+   
+}
+#search{
+    padding: 1px 2px 1px 9px;
+    background-color: #519DDF !important;
+    border-radius: 3px;
+    color: #fff;
+    font-size: 20px;
+    height:40px;
+    font-weight: bold;
+    width:100%;
+    border: none;
+    outline: none;
+    transition: border 0.3s ease;
+}
+#search::placeholder{
+    color:#fff;
+    opacity: 1;
+}
+#search:focus {
+    border: 2px solid #fff; 
+    outline: none; 
+}
+.fa-solid {
+    font-style: normal;
+    font-weight: bold;
+    color: #CCC;
+    position:absolute;
+    font-size: 20px;
+    cursor: pointer; 
+}
+button[aria-label="search Button"] {
+    position: absolute;
+    right: 40px; 
+    background: none;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
+.content{
+    font-size: 18px;
+    margin-left:20px ;
+}
+.img-container{
+   
+   height:auto;
+   display:flex;
+   justify-content: center;
+   align-items: center;
+   
+}
+.img-container img{
+    width:1285px;
+    height:auto;
+    background-image: cover;
+    
+}
+.content{
+    margin: 15px 33px 15px 33px; 
+    border: solid 1px #ccc;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#heading2{
+     align-items: center;
+     font-size: 33px;
+}
+p{
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    unicode-bidi: isolate;
+}
+.img123 img{
+    display: flex;
+    float: left;
+    align-items: center;
+    justify-content: space-evenly;
+    padding:25px;
+    width: 33.3%;
+}
+
+.img124 img{
+    justify-content: space-evenly;
+    width: 100%;
+    align-items: center;
+    padding: 25px;
+}
+
+.img125 img{
+    justify-content: space-evenly;
+    width: 100%;
+    align-items: center;
+    padding: 25px;
+}
+
+#heading22{
+    text-align: center;
+    color: #333333;
+    font-size: 33px;
+    font-family: sans-serif;
+    margin-bottom: 15px;
+
+}
+.img126 img{
+    justify-content: space-evenly;
+    width: 100%;
+    align-items: center;
+    padding: 25px;
+
+}
+
+
+
+
+
+
+
+
+
