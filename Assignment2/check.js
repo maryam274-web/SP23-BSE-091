@@ -1,59 +1,60 @@
-
-let form=document.getElementById("gform");
-
-
-
-let name_error=document.getElementById("name_error");
-let email_error=document.getElementById("email_error");
-let address_error=document.getElementById("address_error");
-let city_error=document.getElementById("city_error");
-
-form.addEventListener('submit',handleFormSubmit);
-
+window.onload=function(){
+    let gform=document.getElementById("gform");
+    gform.onsubmit= handleFormSubmit
+}
 
 function handleFormSubmit(event){
-    
+
     event.preventDefault();
 
-    let userName=document.getElementById("name").value;
-    let email=document.getElementById("exampleInputEmail1").value;
-    let address=document.getElementById("address").value;
-    let city=document.getElementById("city").value;
+    let userName=document.getElementById("name").value.trim();
+    let email=document.getElementById("exampleInputEmail1").value.trim();
+    let address=document.getElementById("address").value.trim();
+    let city=document.getElementById("city").value.trim();
 
-
+    var namePattern = /^[A-Za-z\s]+$/;
+    var email_pattern=/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    var cityPattern = /^[a-zA-Z\s'-]+$/;
     let isvalid=true;
 
-    let namePattern = /^[A-Za-z\s]+$/;
-    if(userName.trim()===""){
-        name_error.innerHTML= "Invalid name";
+    let name_error=document.getElementById("name_error");
+    let email_error=document.getElementById("email_error");
+    let address_error=document.getElementById("address_error");
+    let city_error=document.getElementById("city_error");
+    
+
+    if(userName==="" || userName.length<2){
+        name_error.innerHTML= "Name is empty or short";
         isvalid=false;
     }else if(!namePattern.test(userName)){
-        name_error.innerHTML= "Name can only contain letters, spaces, hyphens, and apostrophes.";
+        name_error.innerHTML= "Name can only contain letters, hyphens, and apostrophes.";
         isvalid=false;
-    }else if(userName.length<2){
-        name_error.innerHTML= "Name is too short";
-        isvalid=false;
-    }else{
+    }
+    else{
         name_error.innerHTML="";
     }
 
-    let email_pattern=/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    if(email.trim()==="" || !email_pattern.test(email)){
-        email_error.innerHTML= "Email is invalid";
+   
+    if(email==="" ){
+        email_error.innerHTML= "Email address cannot be empty";
         isvalid=false;
+    }
+    else if(!email_pattern.test(email)){
+        email_error.innerHTML="Please enter a valid email address.";
+
     }else{
         email_error.innerHTML="";
     }
-    let addressPattern = /^[a-zA-Z0-9\s,'-]+$/;
-    if(address.trim()==="" || address.length<5 ){
+
+    if(address==="" || address.length<5 ){
         address_error.innerHTML="Address is empty or short";
         isvalid=false;
     }else{
         address_error.innerHTML="";
     }
 
-    let cityPattern = /^[a-zA-Z\s'-]+$/;
-    if(city.trim()==="" || city.length<2){
+   
+    if(city==="" || city.length<2){
         city_error.innerHTML = "city name is empty or short";
         isvalid=false;
     }else if(!cityPattern.test(city)){
@@ -63,9 +64,17 @@ function handleFormSubmit(event){
         city_error.innerHTML="";
     }
 
-    if(isvalid){
-        alert("form submitted successfully")
+
+    if (isvalid) {
+        document.getElementById("name").value = "";
+        document.getElementById("exampleInputEmail1").value = "";
+        document.getElementById("address").value = "";
+        document.getElementById("city").value = "";
+
+        alert("Form is submitted successfully!");
     }
+
+   return isvalid;
 
     
 }
