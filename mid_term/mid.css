@@ -125,24 +125,30 @@
 
 
     /* Add this CSS to style the images */
+/* Adjust the image gallery layout */
 .image-gallery {
     display: grid;
-    grid-template-columns: 1fr 1fr; /* Two columns */
-    gap: 10px;
-    margin-left: 20px; /* Create some space between the text and the images */
+    grid-template-columns: 1fr 1fr; /* Two columns for the grid */
+    grid-template-rows: auto auto; /* Automatically adjust row height */
+    gap: 20px; /* Space between the images */
+    margin-left: 20px; /* Space between the image gallery and the text */
+    width: 50%; /* Adjust width of the gallery to fit well next to the text */
+    align-items: start; /* Aligns the images at the top */
   }
   
   .image-gallery img {
-    width: 100%;  /* Ensure the images take the full width of their grid cell */
+    width: 100%;  /* Ensure each image takes the full width of its grid cell */
     height: auto;
     border: 2px solid #fff;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
   
+  /* Adjust hero section to better fit text and image gallery side by side */
   .hero {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start; /* Align content at the start */
+    align-items: flex-start; /* Align content at the top */
+    flex-wrap: wrap; /* Ensure content wraps properly on smaller screens */
   }
   
   }
