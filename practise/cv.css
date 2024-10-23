@@ -1,0 +1,72 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+}
+.container {
+    display: flex;
+    max-width: 900px;
+    margin: 20px auto;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+
+#image {
+    background-color: #d1e8ff; 
+    padding: 15px;
+   
+}
+.left-section {
+     text-align: center;
+     width: 45%;
+}
+.data_section{
+    background-color: #2d4460;
+    padding: 40px; 
+    color: black;
+}
+  
+.left-section img {
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    
+}
+.left-section h2 {
+    margin-bottom: 1px;
+}
+
+.data_section h3{
+    border-bottom: 2px solid black;
+    margin-bottom: 1px;
+}
+
+.data_section h3, .data_section p {
+    margin-bottom: 1px;
+}
+.right-section {
+    width: 65%;
+    padding: 20px;
+}
+.right-section h2 {
+    color: #2d4460;
+    border-bottom: 2px solid #2d4460;
+    padding-bottom: 5px;
+}
+.right-section h3 {
+    margin-top: 10px;
+}
+.skills ul, .courses ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+.skills ul li, .courses ul li {
+    margin-bottom: 10px;
+}
+
+.contact, .languages, .hobbies {
+    margin-bottom: 20px;
+}
