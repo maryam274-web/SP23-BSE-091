@@ -15,7 +15,7 @@ function loadDescription(fileName) {
       event.preventDefault(); // Prevent default link behavior (e.g., page reload)
   
       // Get the project file name from the data-project attribute
-      var projectFile = $(this).data('/protext/project');
+      var projectFile = $(this).data('project');
   
       // Use AJAX to load the content from the corresponding file
       $.ajax({
@@ -36,7 +36,7 @@ function loadDescription(fileName) {
   $(document).ready(function () {
     // Event handler for description buttons
     $('.load-description').click(function () {
-        const projectFile = $(this).data('/protext/project'); // Get the project filename
+        const projectFile = $(this).data('project'); // Get the project filename
 
         // Perform AJAX request to fetch the project description
         $.ajax({
