@@ -10,7 +10,7 @@ server.get("/", (req, res) => {
     res.render("index");
 });
 
-server.get("/mid", (req, res) => {
+server.get("/portfolio", (req, res) => {
     res.send(res.render("mid"));
 });
 
