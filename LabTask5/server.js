@@ -1,22 +1,14 @@
 const express = require("express");
-const mongoose=require("mongoose");
 var expressLayouts = require("express-ejs-layouts");
-let adminProductsRouter = require("./routes/Admin/product.controller");
-let adminCategoryRouter = require("./routes/Admin/category.controller");
-
 let server = express();
 server.set("view engine", "ejs");
 server.use(expressLayouts);
 server.use(express.static("public"));
 server.use(express.urlencoded({ extended: true }));
-server.use(express.json());
-server.use(adminProductsRouter);
-server.use(adminCategoryRouter);
 
-mongoose.connect("mongodb://127.0.0.1:27017/MernStack")
-.then(()=>console.log("connected to database"))
-.catch((err)=>console.log("error connecting to database ",err));
 
+let adminProductsRouter = require("./routes/admin/product.controller");
+server.use(adminProductsRouter); 
 
 
 
@@ -35,4 +27,3 @@ server.get("/portfolio", (req, res) => {
 server.listen(2000,()=>{
     console.log("server started at localhost: 2000");
 });
-

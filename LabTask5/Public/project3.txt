@@ -1,0 +1,1 @@
+The Web Development Project focuses on creating a basic yet fully functional website using HTML and CSS. This project aims to showcase fundamental web development skills, emphasizing the importance of structure, styling, and responsive design in creating an engaging user experience.

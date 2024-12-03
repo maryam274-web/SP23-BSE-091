@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <link rel="stylesheet" href="/css/mids.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="logo">Portfolio</div>
+      <ul class="nav-links">
+        <li><a href="#" class="load-project" data-project="project1.txt">Semester 1 project</a></li>
+        <li><a href="#" class="load-project" data-project="project2.txt">Semester 2 project</a></li>
+        <li><a href="#" class="load-project" data-project="project3.txt">Semester 3 project</a></li>
+      </ul>
+      <div class="menu-icon">&#9776;</div>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Projects</h1>
+      <p>Semester-wise projects</p>
+      <div id="project-description">
+        <p>Select a semester to view the projects.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="hero">
+    <div class="hero-content">
+      <h4>Semester 1 projects</h4>
+      <h4>Online Shopping System</h4>
+      <h5>summary</h5>
+      <p>An online shopping system simplifies the purchasing process,<br> offers convenience for users, and enables businesses to expand their customer base globally. <br> It supports a seamless buying experience through automation and <br> integration with various tools like payment gateways and shipping providers.</p>
+      <div id="project-description">
+        <button class="load-description" data-project="project1.txt">Description</button>
+        <div class="description-content"></div>
+    </div>
+    </div>
+    <div class="image-gallery">
+        <img src=".//images/img1.jpeg" alt="Image 1">
+        <img src=".//images/img2.jpeg" alt="Image 2">
+      </div>
+  </section>
+
+
+  <section class="hero">
+    <div class="hero-content">
+        <h4>Semester 2 projects</h4>
+        <h4>Ecommerce</h4>
+        <h5>summary</h5>
+        <p>This project aims to demonstrate the effective application of database concepts and technologies,<br> providing a practical solution that can <br> be adapted for various real-world scenarios.</p>
+
+        <div id="project-description">
+            <button class="load-description" data-project="project2.txt">Description</button>
+            <div class="description-content"></div>
+         
+        </div>
+    </div>
+    <div class="image-gallery">
+        <img src=".//images/img1.jpeg" alt="Image 1">
+        <img src=".//images/img2.jpeg" alt="Image 2">
+      </div>
+  </section>
+
+
+  <section class="hero">
+    <div class="hero-content">
+        <h4>Semester 3 projects</h4>
+        <h4>web development</h4>
+        <p>This project was about creating a basic website using HTML, CSS, and JavaScript.</p>
+
+        <div id="project-description">
+            <button class="load-description" data-project="project3.txt">Description</button>
+            <div class="description-content"></div>
+        </div>
+    </div>
+    <div class="image-gallery">
+        <img src=".//images/img1.jpeg" alt="Image 1">
+        <img src=".//images/img2.jpeg" alt="Image 2">
+      </div>
+  </section>
+
+  <script src="/JS/mid1.js"></script>
+
+</body>
+</html>
