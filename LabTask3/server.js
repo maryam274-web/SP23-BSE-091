@@ -32,7 +32,7 @@ server.get("/portfolio", (req, res) => {
 
 
 
-server.listen(2000,()=>{
-    console.log("server started at localhost: 2000");
+server.listen(3000,()=>{
+    console.log("server started at localhost: 3000");
 });
 

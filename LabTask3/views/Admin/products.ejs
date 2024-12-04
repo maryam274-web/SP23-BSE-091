@@ -8,6 +8,7 @@
             <th>Title</th>
             <th>Price</th>
             <th>Description</th>
+            <th>Category</th>
             <th>Actions</th>
         </tr>
     </thead>
@@ -18,6 +19,7 @@
                 <td><%= products[index].title %></td>
                 <td><%= products[index].price %></td>
                 <td><%= products[index].description %></td>
+                <td><%= products[index].Category %></td>
                 <td>
                     <a href="/admin/products/edit/<%= products[index]._id %>" class="btn btn-warning">Edit</a>
                     <a href="/admin/products/delete/<%= products[index]._id %>" class="btn btn-danger">Delete</a>

@@ -9,7 +9,6 @@ router.get("/admin/products/create", (req, res) => {
 });
 
 router.post("/admin/products/create", async(req, res) => {
-  console.log("Request body:", req.body);
     const data = req.body;
     let newProduct= new product(data);
     await newProduct.save();
