@@ -7,6 +7,8 @@
             <th>id</th>
             <th>Title</th>
             <th>Description</th>
+            <th>Products</th>
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody>
@@ -15,6 +17,13 @@
                 <td><%=  Category[index]._id %></td>
                 <td><%=  Category[index].title %></td>
                 <td><%=  Category[index].description %></td>
+                <td>
+                    <% if (Array.isArray(Category[index].products) && Category[index].products.length > 0) { %>
+                        <%=Category[index].products.map(product => product.title).join(', ') %>
+                    <% } else { %>
+                        No products
+                    <% } %>
+                </td>
                 <td>
                     <a href="/admin/products/Categories/edit/<%= Category[index]._id %>" class="btn btn-warning">Edit</a>
                     <a href="/admin/products/Categories/delete/<%= Category[index]._id %>" class="btn btn-danger">Delete</a>

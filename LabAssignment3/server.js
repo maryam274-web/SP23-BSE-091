@@ -13,6 +13,8 @@ server.use(express.json());
 server.use(adminProductsRouter);
 server.use(adminCategoryRouter);
 
+
+
 mongoose.connect("mongodb://127.0.0.1:27017/MernStack")
 .then(()=>console.log("connected to database"))
 .catch((err)=>console.log("error connecting to database ",err));

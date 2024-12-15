@@ -17,9 +17,9 @@ router.post("/admin/products/Categories/create", async(req, res) => {
     
 });
 
-router.get("/admin/products/categories", async (req, res) => { // Make route lowercase
+router.get("/admin/products/categories", async (req, res) => { 
     try {
-      let Category = await categories.find();
+      let Category = await categories.find().populate('products');
       return res.render("admin/categories", { // Adjust view path accordingly
         layout: "adminlayout",
         pageTitle: "Manage Your Category",
@@ -29,7 +29,7 @@ router.get("/admin/products/categories", async (req, res) => { // Make route low
       console.error(err);
       return res.status(500).send("Error retrieving Category.");
     }
-  });
+});
   
 
 
@@ -57,10 +57,5 @@ router.get("/admin/products/Categories/delete/:id", async (req, res) => {
   let  Category = await  categories.findByIdAndDelete(req.params.id);
   return res.redirect("/admin/products/Categories");
 });
-
-
-
-  
-
 
 module.exports = router;
