@@ -113,7 +113,7 @@ router.post("/admin/products/edit/:id", upload.single('productImage'), async (re
     productToUpdate.price = price;
     productToUpdate.description = description;
     productToUpdate.category = categoryId;
-    productToUpdate.image = `/uploads/${req.file.filename}`;
+    
 
     await productToUpdate.save();
 

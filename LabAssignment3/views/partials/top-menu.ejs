@@ -1,32 +1,32 @@
 <header>
     <nav class="navbar navbar-expand-lg custom-navbar">
         <div class="container-fluid">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"> <!-- Added navbar-toggler button -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item dropdown">
-                <a class="nav-link active dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    About Us
-                </a>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Action</a></li>
-                  <li><a class="dropdown-item" href="#">Another action</a></li>
-                  <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link active dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            About Us
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="nav-link active" href="#">Customer Service</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Make A Payment</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Locations</a>
+                    </li>
                 </ul>
-            </li>
-            <li>
-                <a class="nav-link active" href="#">Customer Service</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Make A Payment</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link active" href="#">Locations</a>
-            </li>
-            </ul>
             </div>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <a class="navbar-brand" href="#">
@@ -46,44 +46,50 @@
     </nav>
     <div class="container mt-4 logo">
         <div class="row">
-           <img src=".//images/img.png" class="img-fluid"  alt="grand furniture logo">
+            <img src=".//images/img.png" class="img-fluid" alt="grand furniture logo">
         </div>
     </div>
 </header>
 
-
 <div class="container mt-3 menu">
     <div class="d-flex justify-content-between align-item-center menu-style">
-        <ul class="nav ">
-            <li class="nav-item"></li>
+        <ul class="nav">
+            <li class="nav-item">
                 <a class="nav-link" href="#">GET PREQUALIFIED</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link active" href="#">SPECIAL OFFER</a>
+
+            <!-- Furniture Dropdown -->
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    FURNITURE
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item text-dark" href="/furniture">All</a></li>
+                    <li><a class="dropdown-item text-dark" href="#">Bed Room</a></li>
+                    <li><a class="dropdown-item text-dark" href="#">Living Room</a></li>
+                    <li><a class="dropdown-item text-dark" href="#">Dining</a></li>
+                    <li><a class="dropdown-item text-dark" href="#">Home Accent</a></li>
+                </ul>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">FURNITURE</a>
-            </li>
+
             <li class="nav-item">
                 <a class="nav-link" href="#">LOCATIONS</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">ABOUT US</a>
             </li>
-            <li class="nav-item"></li>
+            <li class="nav-item">
                 <a class="nav-link" href="/admin/products">ADMIN PANEL</a>
             </li>
-            
         </ul>
         <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" id="Search" placeholder="Search here... "aria-label="Search">
-            <button class="btn  search-icon" type="submit">
+            <input class="form-control me-2" type="search" id="Search" placeholder="Search here..." aria-label="Search">
+            <button class="btn search-icon" type="submit">
                 <span class="fa-solid fa-magnifying-glass"></span>
             </button>
         </form>
-   
     </div>
 </div>
-
-
+<!-- Bootstrap JS (Optional: For dropdowns and other components) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 

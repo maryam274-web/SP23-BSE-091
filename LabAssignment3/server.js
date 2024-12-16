@@ -3,6 +3,8 @@ const mongoose=require("mongoose");
 var expressLayouts = require("express-ejs-layouts");
 let adminProductsRouter = require("./routes/Admin/product.controller");
 let adminCategoryRouter = require("./routes/Admin/category.controller");
+let userCategoryRouter = require("./routes/user/user.product.controller");
+
 
 let server = express();
 server.set("view engine", "ejs");
@@ -12,6 +14,7 @@ server.use(express.urlencoded({ extended: true }));
 server.use(express.json());
 server.use(adminProductsRouter);
 server.use(adminCategoryRouter);
+server.use(userCategoryRouter);
 
 
 

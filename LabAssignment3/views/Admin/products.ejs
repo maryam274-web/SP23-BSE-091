@@ -20,9 +20,7 @@
                 <td><%= products[index].title %></td>
                 <td><%= products[index].price %></td>
                 <td><%= products[index].description %></td>
-                <% if (products.image) { %>
                 <td><img src="<%= products[index].image %>" alt="<%= products[index].title %>" style="width: 100px; height: auto;"></td>
-                <% } %>
                 <td><%= products[index].category ? products[index].category.title : 'No category' %></td>
                 <td>
                     <a href="/admin/products/edit/<%= products[index]._id %>" class="btn btn-warning">Edit</a>
