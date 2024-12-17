@@ -4,102 +4,74 @@ let Product = require("../../models/product.model")
 let Category = require("../../models/category.model");
 
 router.get('/furniture/:page?', async (req, res) => {
-    try {
-      // Pagination logic
-      let page = req.params.page ? Number(req.params.page) : 1; // Default to page 1 if not provided
-      let pageSize = 8;
-  
-      // Count total products across all categories
-      let totalRecords = await Product.countDocuments();
-  
-      let totalPages = Math.ceil(totalRecords / pageSize); // Calculate total pages
-  
-      // Fetch products for the current page across all categories
-      const products = await Product.find()
-        .limit(pageSize)
-        .skip((page - 1) * pageSize);
-  
-      // Render the view
-      res.render('furniture', {
-        products,          // List of products for the current page
-        page,              // Current page number
-        pageSize,          // Page size
-        totalPages,        // Total number of pages
-        totalRecords,      // Total number of products
-      });
-    } catch (error) {
-      console.error(error);
-      res.status(500).send('Error fetching products');
+  try {
+    // Extract query parameters with defaults
+    const category = req.query.category || "";
+    const sort = req.query.sort || "";
+
+    console.log("Received query parameters:", req.query);
+
+    // Build query for filtering
+    let query = {};
+
+    // Filtering by category
+    if (category) {
+      const categoryDoc = await Category.findOne({ title: category });
+      if (categoryDoc) {
+        query.category = categoryDoc._id; // Match category by ID
+      } else {
+        console.log("No category found for name:", category);
+      }
     }
-  });
 
+    console.log("Final Query:", query);
 
+    // Sorting options
+    let sortOptions = {};
+    if (sort === 'price_low') sortOptions.price = 1; // Ascending
+    if (sort === 'price_high') sortOptions.price = -1; // Descending
+    console.log("Sorting options:", sortOptions);
 
-  router.get("/furniture/sort-lowtohigh", async(req, res) => {
-    try {
-        let page = req.query.page ? Number(req.query.page) : 1; // Get current page from query string or default to page 1
-        let pageSize = 8;
+    // Pagination logic
+    const page = req.params.page ? Number(req.params.page) : 1; // Default to page 1
+    const pageSize = 8; // Products per page
+    const skip = (page - 1) * pageSize;
 
-        // Sort by price in ascending order
-        let products = await Product.find()
-            .sort({ price: 1 })
-            .limit(pageSize)
-            .skip((page - 1) * pageSize); // Implement pagination
+    // Fetch total products count
+    const totalProducts = await Product.countDocuments(query);
 
-        // Get the total number of records to calculate totalPages
-        let totalRecords = await Product.countDocuments();
+    // Fetch products
+    const products = await Product.find(query)
+      .sort(sortOptions)
+      .skip(skip)
+      .limit(pageSize);
 
-        // Calculate total pages
-        let totalPages = Math.ceil(totalRecords / pageSize);
+    console.log("Fetched products:", products);
 
-        const stylesheets = ['/css/style.css', '/css/furniturestyle.css'];
+    // Fetch categories for dropdown
+    const categories = await Category.find();
 
-        return res.render('furniture', {
-            stylesheet: stylesheets,
-            products,
-            page, // Send the current page
-            pageSize,
-            totalPages,
-            totalRecords,
-        });
-    } catch (error) {
-        console.error(error);
-        res.status(500).send('Error fetching products');
-    }
+    // Calculate total pages
+    const totalPages = Math.ceil(totalProducts / pageSize);
+
+    // Render the furniture page
+    res.render('furniture', {
+      products,
+      categories,
+      page,
+      totalPages,
+      currentCategory: category,
+      currentSort: sort,
+      totalProducts,
+    });
+  } catch (error) {
+    console.error("Error fetching products:", error);
+    res.status(500).send("Server Error");
+  }
 });
 
-router.get("/furniture/sort-hightolow", async(req, res) => {
-    try {
-        let page = req.query.page ? Number(req.query.page) : 1; // Get current page from query string or default to page 1
-        let pageSize = 8;
 
-        // Sort by price in descending order
-        let products = await Product.find()
-            .sort({ price: -1 })
-            .limit(pageSize)
-            .skip((page - 1) * pageSize); // Implement pagination
 
-        // Get the total number of records to calculate totalPages
-        let totalRecords = await Product.countDocuments();
-
-        // Calculate total pages
-        let totalPages = Math.ceil(totalRecords / pageSize);
-
-        const stylesheets = ['/css/style.css', '/css/furniturestyle.css'];
-
-        return res.render('furniture', {
-            stylesheet: stylesheets,
-            products,
-            page, // Send the current page
-            pageSize,
-            totalPages,
-            totalRecords,
-        });
-    } catch (error) {
-        console.error(error);
-        res.status(500).send('Error fetching products');
-    }
-});
-
+  
   
   module.exports = router;

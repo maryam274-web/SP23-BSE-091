@@ -20,7 +20,7 @@
     </ol>
 </nav>
   <div class="container my-5">
-    <h2 class=" mb-4">Clothes Collection</h2>
+    <h2 class=" mb-4">Grand Furniture</h2>
     <!-- Filter and Sort Section -->
     <div class="d-flex justify-content-between   mb-4">
         <!-- Filter Dropdown -->
@@ -28,9 +28,19 @@
           <button class="  btn btn-outline-secondary text-black border-secondary-subtle  filter-sort-wrapper dropdown-toggle"style="padding-right:110px;"  type="button" id="filterDropdown" data-bs-toggle="dropdown" aria-expanded="false" >
             <i class="icon fa-solid fa-sliders pe-1" ></i> Filter
           </button>
-          <ul class=" dropdown-menu " aria-labelledby="filterDropdown">
-            <li><a class="dropdown-item" href="/furniture/sort-lowtohigh">price low to high</a></li>
-            <li><a class="dropdown-item" href="/furniture/sort-hightolow">price high to low</a></li>
+          <ul class="dropdown-menu" aria-labelledby="filterDropdown">
+            <li>
+              <a class="dropdown-item <%= !currentCategory ? 'active' : '' %>"
+                 href="/furniture/1?sort=<%= currentSort %>">All Categories</a>
+            </li>
+            <% categories.forEach(cat => { %>
+              <li>
+                <a class="dropdown-item <%= currentCategory === cat.title ? 'active' : '' %>"
+                   href="/furniture/1?category=<%= cat.title %>&sort=<%= currentSort %>">
+                  <%= cat.title %>
+                </a>
+              </li>
+            <% }) %>
           </ul>
         </div>
   
@@ -40,9 +50,18 @@
             <i class="fa-solid fa-sort pe-1"></i> Sort by
           </button>
           <ul class="dropdown-menu" aria-labelledby="sortDropdown">
-            <li><a class="dropdown-item" href="#">Price</a></li>
-            <li><a class="dropdown-item" href="#">Rating</a></li>
-            <li><a class="dropdown-item" href="#">Newest</a></li>
+            <li>
+              <a class="dropdown-item <%= currentSort === 'price_low' ? 'active' : '' %>"
+                 href="/furniture/1?category=<%= currentCategory %>&sort=price_low">
+                 Price: Low to High
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item <%= currentSort === 'price_high' ? 'active' : '' %>"
+                 href="/furniture/1?category=<%= currentCategory %>&sort=price_high">
+                 Price: High to Low
+              </a>
+            </li>
           </ul>
         </div>
     </div>
@@ -70,14 +89,11 @@
       </li>
   
       <!-- Loop to generate page numbers -->
-      <% for (let i = 1; i <= totalPages; i++) { %>
-          <li class="page-item <%= page == i ? 'active' : '' %>">
-              <a 
-                  class="page-link <%= page == i ? 'bg-secondary text-white' : 'text-secondary' %>" 
-                  href="/clothes/<%= i %>">
-                  <%= i %>
-              </a>
-          </li>
+      <% for(let i = 1; i <= totalPages; i++) { %>
+        <a href="/furniture/<%= i %>?category=<%= currentCategory %>&sort=<%= currentSort %>" 
+           class="page-link <%= page === i ? 'active' : '' %>">
+          <%= i %>
+        </a>
       <% } %>
   
       <!-- Next Button -->
