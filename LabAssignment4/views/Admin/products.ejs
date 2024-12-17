@@ -1,0 +1,37 @@
+<h3><%-pageTitle  %></h3>
+
+
+<form class="form-inline my-2 my-lg-0" action="/admin/products" method="GET">
+    
+</form>
+
+<a href="/admin/products/create" class="btn btn-info">Create New Product</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>id</th>
+            <th>Title</th>
+            <th>Price</th>
+            <th>Description</th>
+            <th>Image</th>
+            <th>Category</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% for( let index = 0; index < products.length; index++ ) { %>
+            <tr>
+                <td><%= products[index]._id %></td>
+                <td><%= products[index].title %></td>
+                <td><%= products[index].price %></td>
+                <td><%= products[index].description %></td>
+                <td><img src="<%= products[index].image %>" alt="<%= products[index].title %>" style="width: 100px; height: auto;"></td>
+                <td><%= products[index].category ? products[index].category.title : 'No category' %></td>
+                <td>
+                    <a href="/admin/products/edit/<%= products[index]._id %>" class="btn btn-warning">Edit</a>
+                    <a href="/admin/products/delete/<%= products[index]._id %>" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        <% } %>
+    </tbody>
+</table>

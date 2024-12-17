@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Clothes</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- <link rel="stylesheet" href="/css/style.css">-->
+  <link rel="stylesheet" href="/css/furniturestyle.css"> 
+</head>
+<body>
+  <nav aria-label="breadcrumb "style="margin-left:110px; margin-top:10px; ">
+    <ol class="breadcrumb ">
+        <li class="breadcrumb-item">
+            <a href="/">Home </a>
+            >
+            <a  href="/funiture">Furniture</a>
+        </li>
+    </ol>
+</nav>
+  <div class="container my-5">
+    <h2 class=" mb-4">Grand Furniture</h2>
+    <!-- Filter and Sort Section -->
+    <div class="d-flex justify-content-between   mb-4">
+        <!-- Filter Dropdown -->
+        <div class="dropdown">
+          <button class="  btn btn-outline-secondary text-black border-secondary-subtle  filter-sort-wrapper dropdown-toggle"style="padding-right:110px;"  type="button" id="filterDropdown" data-bs-toggle="dropdown" aria-expanded="false" >
+            <i class="icon fa-solid fa-sliders pe-1" ></i> Filter
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="filterDropdown">
+            <li>
+              <a class="dropdown-item <%= !currentCategory ? 'active' : '' %>"
+                 href="/furniture?page=1&category=&sort=<%= currentSort || '' %>">
+                 All Categories
+              </a>
+            </li>
+            <% categories.forEach(cat => { %>
+              <li>
+                <a class="dropdown-item <%= currentCategory === cat.title ? 'active' : '' %>"
+                   href="/furniture?page=1&category=<%= cat.title %>&sort=<%= currentSort || '' %>">
+                   <%= cat.title %>
+                </a>
+              </li>
+            <% }) %>
+          </ul>
+        </div>
+  
+        <!-- Sort By Dropdown -->
+        <div class="dropdown">
+          <button class="btn btn-outline-secondary text-black border-secondary-subtle custom-dropdown-btn dropdown-toggle"style="padding-right:110px;" type="button" id="sortDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fa-solid fa-sort pe-1"></i> Sort by
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="sortDropdown">
+            <li>
+              <a class="dropdown-item <%= currentSort === 'price_low' ? 'active' : '' %>"
+                 href="/furniture?page=1&category=<%= currentCategory %>&sort=price_low">
+                 Price: Low to High
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item <%= currentSort === 'price_high' ? 'active' : '' %>"
+                 href="/furniture?page=1&category=<%= currentCategory %>&sort=price_high">
+                 Price: High to Low
+              </a>
+            </li>
+          </ul>
+        </div>
+    </div>
+    <div class="row ">
+      <% products.forEach(product => { %> <!-- Loop over 'products' variable -->
+        <div class="col-6 col-sm-2 col-md-3 mb-5">
+          <div class="product-card border-0" style="width: 17rem;">
+            <img class="prod-img img-fluid" src="<%= product.image %>" alt="<%= product.title %>">
+            <div class="product-info">
+             <h5 class="card-title"><%= product.title %></h5>
+              <p class="card-text">Rs.<%= product.price %></p>
+              <a href="#" class="btn btn-custom">ADD TO BAG</a>
+            </div>
+            
+          </div>
+        </div>
+      <% }); %>
+
+    </div>
+
+    <ul class="pagination justify-content-center p-3">
+      <!-- Previous Button -->
+      <li class="page-item <%= page == 1 ? 'disabled' : '' %>">
+          <a class="page-link text-secondary" href="/furniture/<%= page - 1 %>">Previous</a>
+      </li>
+  
+      <!-- Loop to generate page numbers -->
+      <% for(let i = 1; i <= totalPages; i++) { %>
+        <a href="/furniture/<%= i %>?category=<%= currentCategory %>&sort=<%= currentSort %>" 
+           class="page-link <%= page === i ? 'active' : '' %>">
+          <%= i %>
+        </a>
+      <% } %>
+  
+      <!-- Next Button -->
+      <li class="page-item <%= page == totalPages ? 'disabled' : '' %>">
+          <a class="page-link text-secondary" href="/furniture/<%= page + 1 %>">Next</a>
+      </li>
+  </ul>
+  
+  <div class="pagination mb-3 justify-content-center">
+      Page <%= page %> of <%= totalPages %>
+  </div>
+    
+    
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+  <!-- Bootstrap JS (Optional: For dropdowns and other components) -->
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,154 @@
+/* Reset some default browser styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  height: 100%;
+  font-family: 'Arial', sans-serif;
+}
+
+header {
+  background-color: #f9f9f9;
+  padding: 20px 0;
+  border-bottom: 1px solid #e5e5e5;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 40px;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+}
+
+.nav-links li {
+  margin: 0 15px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+}
+
+.menu-icon {
+  display: none;
+}
+
+/* Hero section with background image */
+.hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100vh;
+  padding: 50px;
+  background-color: lightpink;
+  background-size: cover;         /* Ensures image covers the section without stretching */
+  background-position: center;    /* Centers the image */
+  background-attachment: fixed;   /* Keeps the image fixed in place for a parallax effect */
+  background-repeat: no-repeat;   /* Prevents the image from repeating */
+}
+
+.hero-content {
+  flex: 1;
+  color: white; /* Ensure text is visible on background */
+}
+
+.hero-content h1,h4 {
+  font-size: 62px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.hero-content p {
+  font-size: 18px;
+  margin-bottom: 30px;
+}
+
+button {
+  padding: 15px 30px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.hero-image {
+  display: none; /* Hide hero image when using a background */
+}
+
+/* For small screen sizes */
+@media (max-width: 768px) {
+  .hero {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .nav-links {
+    display: none;
+  }
+
+  .menu-icon {
+    display: block;
+    cursor: pointer;
+  }
+
+  .hero-image {
+    display: none;
+  }
+
+  #project-description {
+      margin-top: 50px;
+      padding: 20px;
+      background-color: #f5f5f5;
+      border: 1px solid #ccc;
+      font-size: 16px;
+      line-height: 1.5;
+    }
+
+
+  /* Add this CSS to style the images */
+/* Adjust the image gallery layout */
+.image-gallery {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Two columns for the grid */
+  grid-template-rows: auto auto; /* Automatically adjust row height */
+  gap: 20px; /* Space between the images */
+  margin-left: 20px; /* Space between the image gallery and the text */
+  width: 50%; /* Adjust width of the gallery to fit well next to the text */
+  align-items: start; /* Aligns the images at the top */
+}
+
+.image-gallery img {
+  width: 100%;  /* Ensure each image takes the full width of its grid cell */
+  height: auto;
+  border: 2px solid #fff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Adjust hero section to better fit text and image gallery side by side */
+.hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start; /* Align content at the top */
+  flex-wrap: wrap; /* Ensure content wraps properly on smaller screens */
+}
+
+}
