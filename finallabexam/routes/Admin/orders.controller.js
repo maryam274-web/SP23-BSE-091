@@ -2,6 +2,19 @@ const express = require('express');
 const router = express.Router();
 const Order = require('../../models/order.model');
 
+
+let cookieParser = require("cookie-parser");
+router.use(cookieParser());
+router.use(session({
+    secret: 'your-secret-key',
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+        secure: false, 
+        maxAge: 1000 * 60 * 60 * 24, 
+    },
+}));
+
 // Orders page route
 router.get('/orders', async (req, res) => {
     try {
