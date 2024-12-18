@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Clothes</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- <link rel="stylesheet" href="/css/style.css">-->
+  <link rel="stylesheet" href="/css/furniturestyle.css"> 
+</head>
+<body>
+  <nav aria-label="breadcrumb "style="margin-left:110px; margin-top:10px; ">
+    <ol class="breadcrumb ">
+        <li class="breadcrumb-item">
+            <a href="/">Home </a>
+            >
+            <a  href="/furniture">Furniture</a>
+        </li>
+    </ol>
+</nav>
+<div class="container">
+    <h4>Products in Cart</h4>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Price</th>
+                <th>Image</th>
+                <th>Quantity</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% products.forEach(product => { %>
+             <tr>
+                 <td><%= product.title %></td>
+                 <td><%= product.price %></td>
+                 <td><img src="<%= product.image %>" alt="Product Image" width="100"></td>
+                 <td>1</td>
+             </tr>
+            <% }) %>
+        </tbody>
+    </table>
+
+    <div class="d-flex justify-content-between">
+        <h5>Total Price: PKR: <%= totalPrice %></h5>
+        <!-- Checkout button -->
+        <form action="/checkout" >
+            <button type="submit" class="btn btn-success">Proceed to Checkout</button>
+        </form>
+    </div>
+    <div class="container">
+        <a href="/furniture" class="btn btn-success btn-sm me-5">Continue Shoping</a>
+    </div>
+   
+</div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+  
+</body>
+</html>

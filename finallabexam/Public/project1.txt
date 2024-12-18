@@ -1,0 +1,1 @@
+The Online Shopping System is a comprehensive web-based platform designed to facilitate the buying and selling of products over the internet. This system aims to streamline the shopping experience for users while providing a robust backend for retailers.
