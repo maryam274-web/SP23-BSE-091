@@ -10,19 +10,14 @@ let Category = require("../../models/category.model");
 router.get("/admin/products", async (req, res) => {
   try {
     const search = req.query.search || ""; // Extract search query
-
-    // Build a query to match product title, description, or category title
     let query = {};
 
     if (search) {
-      // Fetch matching categories based on search
       const matchingCategories = await Category.find({
         title: { $regex: search, $options: "i" }, // Case-insensitive category search
       });
 
       const categoryIds = matchingCategories.map((cat) => cat._id); // Extract category IDs
-
-      // Build the query to search in title, description, or category
       query.$or = [
         { title: { $regex: search, $options: "i" } }, // Match product title
         { description: { $regex: search, $options: "i" } }, // Match product description
@@ -53,16 +48,17 @@ router.get("/admin/products/create", async(req, res) => {
   // console.log(categories);
   res.render('admin/product-form',{ 
     layout: "adminlayout",
-    categories, 
+    categories,
+    currentSearch: "", 
    });
 });
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "Public/uploads"); // Path to save images
+    cb(null, "Public/uploads"); 
   },
   filename: (req, file, cb) => {
-    cb(null, Date.now() + path.extname(file.originalname)); // Unique filename with original extension
+    cb(null, Date.now() + path.extname(file.originalname)); 
   },
 });
 const upload = multer({ storage: storage });
@@ -80,7 +76,6 @@ router.post("/admin/products/create",upload.single('productImage'), async (req, 
 
     // console.log("Uploaded File:", req.file);
 
-    // Create a new product
     let newProduct = new product({
       title,
       price,

@@ -7,6 +7,13 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
 </head>
 <body>
+  <% if (successMessage) { %>
+    <div class="alert alert-success"><%= successMessage %></div>
+  <% } %>
+
+  <% if (errorMessage) { %>
+      <div class="alert alert-danger"><%= errorMessage %></div>
+  <% } %>
   <div class="container mt-5">
     <div class="card mx-auto" style="max-width: 400px;">
       <div class="card-header text-center">
@@ -32,5 +39,7 @@
       </div>
     </div>
   </div>
+
+
 </body>
 </html>

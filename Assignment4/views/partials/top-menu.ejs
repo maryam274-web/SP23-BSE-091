@@ -1,4 +1,12 @@
 <header>
+
+    <% if (successMessage) { %>
+        <div class="alert alert-success"><%= successMessage %></div>
+     <% } %>
+    
+     <% if (errorMessage) { %>
+        <div class="alert alert-danger"><%= errorMessage %></div>
+     <% } %>
     <nav class="navbar navbar-expand-lg custom-navbar">
         <div class="container-fluid">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -49,6 +57,7 @@
                 <div>
                     <!-- User Icon -->
                     <i class="fas fa-user fa-3x me-5" style="font-size: large; cursor: pointer" id="userIcon"></i> <!-- Font Awesome User Icon -->
+                    <a href="/Authentication/logout" class="btn btn-success btn-sm me-3">Logout</a>
                 </div>
             </div>
         </div>

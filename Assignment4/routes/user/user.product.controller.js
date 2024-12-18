@@ -5,29 +5,27 @@ let Category = require("../../models/category.model");
 const Order = require("../../models/order.model");
 let authMiddleware = require("../../middlewares/auth-middleware");
 
+//added auth_middleware at every get page and commentedout logoutlines to check if needed
 router.get('/furniture/:page?',authMiddleware, async (req, res) => {
   try {
-    // Extract query parameters with defaults
-    const category = req.query.category || ""; // Default to empty for "All Categories"
-    const sort = req.query.sort || "";         // Default to no sorting
+    const category = req.query.category || ""; 
+    const sort = req.query.sort || "";         
 
     console.log("Received query parameters:", req.query);
 
-    // Build query for filtering
     let query = {};
 
-    // Filtering by category (skip if "All Categories" is selected)
+    // Filtering by category 
     if (category && category !== "") {
       const categoryDoc = await Category.findOne({ title: category });
       if (categoryDoc) {
-        query.category = categoryDoc._id; // Apply category filter
+        query.category = categoryDoc._id; 
       } else {
         console.log("No category found for name:", category);
       }
     } else {
       console.log("No specific category selected. Fetching all categories.");
     }
-
     // console.log("Final Query for Products:", query);
 
     // Sorting options
@@ -37,25 +35,18 @@ router.get('/furniture/:page?',authMiddleware, async (req, res) => {
     // console.log("Sorting options:", sortOptions);
 
     // Pagination logic
-    const page = req.params.page ? Number(req.params.page) : 1; // Default to page 1
-    const pageSize = 8; // Products per page
+    const page = req.params.page ? Number(req.params.page) : 1; 
+    const pageSize = 8; 
     const skip = (page - 1) * pageSize;
-
-    // Fetch total products count
     const totalProducts = await Product.countDocuments(query);
-
-    // Fetch products with filtering, sorting, and pagination
+    
     const products = await Product.find(query)
       .sort(sortOptions)
       .skip(skip)
       .limit(pageSize);
 
     // console.log("Fetched Products:", products.length);
-
-    // Fetch categories for dropdown
     const categories = await Category.find();
-
-    // Calculate total pages
     const totalPages = Math.ceil(totalProducts / pageSize);
 
     // Render the furniture page
@@ -78,19 +69,19 @@ router.get('/furniture/:page?',authMiddleware, async (req, res) => {
 // Route for cart page
 router.get('/cart',authMiddleware, async (req, res) => {
   try {
-      const cartProductIds = req.session.cart; // Get product IDs from session
-      const productsInCart = await Product.find({ '_id': { $in: cartProductIds } }); // Find products in the cart by IDs
+      const cartProductIds = req.session.cart; 
+      const productsInCart = await Product.find({ '_id': { $in: cartProductIds } }); 
 
       // Calculate total price
       let totalPrice = 0;
       productsInCart.forEach(product => {
-          totalPrice += product.price; // Add the price of each product (you can multiply by quantity if needed)
+          totalPrice += product.price;
       });
 
       res.render('cart', {
           products: productsInCart,
-          cartCount: req.session.cart.length, // Number of products in cart
-          totalPrice: totalPrice, // Pass the total price to the view
+          cartCount: req.session.cart.length, 
+          totalPrice: totalPrice, 
       });
   } catch (err) {
       console.error("Error fetching cart products:", err);
@@ -102,15 +93,11 @@ router.get('/cart',authMiddleware, async (req, res) => {
 router.post('/checkout', async (req, res) => {
   try {
     const { name, address, email, phone, paymentMethod } = req.body;
-
-    // Fetch cart data from session
     const cartProductIds = req.session.cart;
 
     if (!cartProductIds || cartProductIds.length === 0) {
-      return res.redirect('/cart'); // Redirect if the cart is empty
+      return res.redirect('/cart'); 
     }
-
-    // Fetch product details for the products in the cart
     const productsInCart = await Product.find({ '_id': { $in: cartProductIds } });
 
     // Calculate total price and build product info
@@ -121,12 +108,10 @@ router.post('/checkout', async (req, res) => {
         productId: product._id,
         title: product.title,
         price: product.price,
-        quantity: 1, // Default quantity, can be updated if quantity functionality exists
+        quantity: 1, 
        
       };
     });
-
-    // Create an order object
     const newOrder = new Order({
       name,
       address,
@@ -136,14 +121,9 @@ router.post('/checkout', async (req, res) => {
       products: orderProducts,
       totalPrice,
     });
-
-    // Save the order to the database
     await newOrder.save();
-
-    // Clear the cart session after order submission
     req.session.cart = [];
 
-    // Redirect to order success page
     res.redirect('/orderSuccess');
   } catch (err) {
     console.error("Error placing the order:", err);
@@ -168,8 +148,5 @@ router.get('/orderSuccess', authMiddleware,(req, res) => {
    layout:false
 });
 });
-
-
-
 
 module.exports = router;
