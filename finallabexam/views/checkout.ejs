@@ -9,7 +9,8 @@
 <body>
   <div class="container mt-5">
     <h2>Checkout</h2>
-    <form action="/checkout" method="POST">
+    <form id="checkoutForm" action="/products/checkout" method="POST">
+
       <div class="mb-3">
         <label for="name" class="form-label">Full Name</label>
         <input type="text" class="form-control" id="name" name="name" required>
@@ -17,8 +18,18 @@
     
       <div class="mb-3">
         <label for="address" class="form-label">Address</label>
-        <textarea class="form-control" id="address" name="address" rows="3" required></textarea>
+        <textarea 
+          class="form-control" 
+          id="address" 
+          name="address" 
+          rows="3" 
+          required 
+          placeholder="Enter your street, city, and postal code"></textarea>
+        <div id="addressError" class="text-danger mt-2" style="display: none;">
+          Please provide your street, city, and postal code.
+        </div>
       </div>
+      
     
       <div class="mb-3">
         <label for="email" class="form-label">Email</label>
@@ -41,6 +52,22 @@
     </form>
     
   </div>
+
+
+  <script>
+    document.querySelector('form').addEventListener('submit', function(event) {
+      const address = document.getElementById('address').value.trim();
+      const addressError = document.getElementById('addressError');
+  
+      // Check if the address contains street, city, and postal code (basic validation)
+      if (!address || !address.includes(',') || address.split(',').length < 3) {
+        addressError.style.display = 'block';
+        event.preventDefault(); // Prevent form submission
+      } else {
+        addressError.style.display = 'none';
+      }
+    });
+  </script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 </body>

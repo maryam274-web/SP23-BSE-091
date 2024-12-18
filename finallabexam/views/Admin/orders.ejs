@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orders</title>
+    <!-- <link rel="stylesheet" href="/path/to/your/styles.css"> Add your CSS path -->
+</head>
+<body>
+    <h1>Orders</h1>
+
+    <% if (orders.length > 0) { %>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Order ID</th>
+                    <th>Customer Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Address</th>
+                    <th>Total Price</th>
+                    <th>Payment Method</th>
+                    <th>Ordered Products</th>
+                    <th>Order Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% orders.forEach(order => { %>
+                    <tr>
+                        <td><%= order._id %></td>
+                        <td><%= order.name %></td>
+                        <td><%= order.email %></td>
+                        <td><%= order.phone %></td>
+                        <td><%= order.address %></td>
+                        <td>PKR: <%= order.totalPrice.toFixed(2) %></td>
+                        <td><%= order.paymentMethod %></td>
+                        <td>
+                            <ol>
+                                <% order.products.forEach(product => { %>
+                                    <li>
+                                        <div><strong>Product:</strong> <%= product.title %></div>
+                                        <div><strong>Price:</strong> PKR <%= product.price %></div>
+                                        <div><strong>Quantity:</strong> <%= product.quantity %></div>
+                                        <hr>
+                                    </li>
+                                <% }); %>
+                            </ol>
+                        </td>
+                        <td><%= new Date(order.createdAt).toLocaleString() %></td>
+                    </tr>
+                <% }); %>
+            </tbody>
+        </table>
+    <% } else { %>
+        <p>No orders found.</p>
+    <% } %>
+</body>
+</html>

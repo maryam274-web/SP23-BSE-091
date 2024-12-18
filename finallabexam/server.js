@@ -8,6 +8,7 @@ let userAuth = require("./routes/user/auth");
 let session = require("express-session");
 let authMiddleware = require("./middlewares/auth-middleware");
 let server = express();
+const Orderrouter = require("./routes/Admin/orders.controller");
 
 //using cookie for storing user_id
 let cookieParser = require("cookie-parser");
@@ -47,6 +48,9 @@ server.use(express.json());
 server.use(adminCategoryRouter);
 server.use(userCategoryRouter);
 server.use(userAuth);
+
+// Serve the orders route
+server.use('/', Orderrouter);
 
 
 //connecting to mongoDB
