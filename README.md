@@ -62,7 +62,7 @@ Flexible, schema-based document storage
 bash
 Copy
 Edit
-git clone https://github.com/your-username/TheGrandFurniture.git
+git clone https://github.com/your-username/SP23-BSE-091.git
 cd TheGrandFurniture
 2. Install backend dependencies:
 bash
